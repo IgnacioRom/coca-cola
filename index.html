@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>♻️ Misión Reciclaje</title>
+
+    <!-- Fuente TCCC Unity -->
+    <script src="https://c.webfontfree.com/c.js?f=TCCC-UnityText-Regular" type="text/javascript"></script>
+
+    <!-- Archivo CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="juego">
+
+        <!-- ============================= -->
+        <!-- PANTALLA DEL JUEGO -->
+        <!-- ============================= -->
+
+        <div id="pantalla-juego">
+
+            <h1>♻️ Misión Reciclaje</h1>
+
+            <div class="subtitulo">
+                <h2>Junto a Coca-Cola</h2>
+                <h3>¡Ayudá al planeta! Elegí el tacho correcto.</h3>
+            </div>
+
+            <div class="informacion">
+
+                <div>
+                    ⭐ Puntos:
+                    <span id="puntos">0</span>
+                </div>
+
+                <div>
+                    ❤️ Vidas:
+                    <span id="vidas">3</span>
+                </div>
+
+                <div>
+                    📦 Residuo:
+                    <span id="numero-residuo">1</span>/10
+                </div>
+
+            </div>
+
+            <p class="residuo-titulo">
+                ¿Dónde tirarías este residuo?
+            </p>
+
+            <div class="residuo" id="residuo">
+                🧴
+            </div>
+
+            <!-- TACHOS -->
+
+            <div class="tachos">
+
+                <button
+                    class="tacho plastico"
+                    onclick="elegirTacho('plastico')">
+
+                    <span>🗑️</span>
+                    Plástico
+
+                </button>
+
+                <button
+                    class="tacho vidrio"
+                    onclick="elegirTacho('vidrio')">
+
+                    <span>🗑️</span>
+                    Vidrio
+
+                </button>
+
+                <button
+                    class="tacho organico"
+                    onclick="elegirTacho('organico')">
+
+                    <span>🗑️</span>
+                    Orgánico
+
+                </button>
+
+            </div>
+
+            <div id="mensaje"></div>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- PANTALLA FINAL -->
+        <!-- ============================= -->
+
+        <div id="pantalla-final">
+
+            <div class="emoji-final">
+                🌎♻️
+            </div>
+
+            <h2>¡Juego terminado!</h2>
+
+            <p class="puntaje-final">
+
+                Tu puntaje fue:
+
+                <strong>
+                    <span id="puntaje-final">0</span>
+                </strong>
+
+                puntos
+
+            </p>
+
+            <button
+                class="boton-reiniciar"
+                onclick="reiniciarJuego()">
+
+                🔄 Jugar nuevamente
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- JAVASCRIPT DEL JUEGO -->
+    <!-- ============================= -->
+
+    <script>
+
+        // ==========================================
+        // DATOS DE LOS RESIDUOS
+        // ==========================================
+
+        const residuos = [
+
+            {
+                nombre: "Botella de plástico",
+                imagen: "🧴",
+                tipo: "plastico"
+            },
+
+            {
+                nombre: "Botella de vidrio",
+                imagen: "🍾",
+                tipo: "vidrio"
+            },
+
+            {
+                nombre: "Cáscara de banana",
+                imagen: "🍌",
+                tipo: "organico"
+            },
+
+            {
+                nombre: "Bolsa de plástico",
+                imagen: "🛍️",
+                tipo: "plastico"
+            },
+
+            {
+                nombre: "Frasco de vidrio",
+                imagen: "🫙",
+                tipo: "vidrio"
+            },
+
+            {
+                nombre: "Manzana",
+                imagen: "🍎",
+                tipo: "organico"
+            },
+
+            {
+                nombre: "Botella plástica",
+                imagen: "🥤",
+                tipo: "plastico"
+            },
+
+            {
+                nombre: "Copa de vidrio",
+                imagen: "🍷",
+                tipo: "vidrio"
+            },
+
+            {
+                nombre: "Cáscara de naranja",
+                imagen: "🍊",
+                tipo: "organico"
+            },
+
+            {
+                nombre: "Envase plástico",
+                imagen: "🧃",
+                tipo: "plastico"
+            }
+
+        ];
+
+
+        // ==========================================
+        // VARIABLES
+        // ==========================================
+
+        let puntos = 0;
+
+        let vidas = 3;
+
+        let residuoActual = 0;
+
+        let juegoActivo = true;
+
+
+        // ==========================================
+        // ELEMENTOS HTML
+        // ==========================================
+
+        const imagenResiduo =
+            document.getElementById("residuo");
+
+        const textoPuntos =
+            document.getElementById("puntos");
+
+        const textoVidas =
+            document.getElementById("vidas");
+
+        const textoNumeroResiduo =
+            document.getElementById("numero-residuo");
+
+        const mensaje =
+            document.getElementById("mensaje");
+
+
+        // ==========================================
+        // MOSTRAR RESIDUO
+        // ==========================================
+
+        function mostrarResiduo() {
+
+            if (residuoActual >= residuos.length) {
+
+                terminarJuego();
+
+                return;
+            }
+
+            const residuo =
+                residuos[residuoActual];
+
+            imagenResiduo.textContent =
+                residuo.imagen;
+
+            textoNumeroResiduo.textContent =
+                residuoActual + 1;
+
+            mensaje.textContent = "";
+
+            mensaje.className = "";
+        }
+
+
+        // ==========================================
+        // ELEGIR TACHO
+        // ==========================================
+
+        function elegirTacho(tipoElegido) {
+
+            if (!juegoActivo) {
+                return;
+            }
+
+            const residuo =
+                residuos[residuoActual];
+
+
+            // RESPUESTA CORRECTA
+
+            if (tipoElegido === residuo.tipo) {
+
+                puntos += 10;
+
+                textoPuntos.textContent =
+                    puntos;
+
+                mensaje.textContent =
+                    "✅ ¡Correcto! ¡Muy bien! +10 puntos";
+
+                mensaje.className =
+                    "correcto";
+
+                residuoActual++;
+
+                setTimeout(() => {
+
+                    mostrarResiduo();
+
+                }, 1000);
+
+            }
+
+
+            // RESPUESTA INCORRECTA
+
+            else {
+
+                vidas--;
+
+                textoVidas.textContent =
+                    vidas;
+
+                mensaje.textContent =
+                    "❌ ¡Incorrecto! Probá con otro tacho.";
+
+                mensaje.className =
+                    "incorrecto";
+
+
+                if (vidas <= 0) {
+
+                    setTimeout(() => {
+
+                        terminarJuego();
+
+                    }, 1000);
+
+                }
+
+            }
+
+        }
+
+
+        // ==========================================
+        // TERMINAR JUEGO
+        // ==========================================
+
+        function terminarJuego() {
+
+            juegoActivo = false;
+
+            document.getElementById(
+                "pantalla-juego"
+            ).style.display = "none";
+
+            document.getElementById(
+                "pantalla-final"
+            ).style.display = "block";
+
+            document.getElementById(
+                "puntaje-final"
+            ).textContent = puntos;
+        }
+
+
+        // ==========================================
+        // REINICIAR JUEGO
+        // ==========================================
+
+        function reiniciarJuego() {
+
+            puntos = 0;
+
+            vidas = 3;
+
+            residuoActual = 0;
+
+            juegoActivo = true;
+
+            textoPuntos.textContent =
+                puntos;
+
+            textoVidas.textContent =
+                vidas;
+
+            document.getElementById(
+                "pantalla-juego"
+            ).style.display = "block";
+
+            document.getElementById(
+                "pantalla-final"
+            ).style.display = "none";
+
+            mostrarResiduo();
+        }
+
+
+        // ==========================================
+        // INICIAR JUEGO
+        // ==========================================
+
+        mostrarResiduo();
+
+    </script>
+
+</body>
+
+</html>
