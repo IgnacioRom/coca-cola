@@ -10,27 +10,22 @@
 
 body {
 
-    font-family: "TCCC-UnityText-Regular",
-                 Arial,
-                 sans-serif;
+    font-family: "TCCC-UnityText-Regular", Arial, sans-serif;
 
-    background: linear-gradient(
-        135deg,
-        #f70a0a,
-        #f70a0a,
-        #f70a0a
-    );
+    background-image: url(fondo.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-    min-height: 100vh;
+    min-height: 50vh;
 
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
     padding: 20px;
 }
+
 
 
 /* ==========================================
@@ -39,11 +34,11 @@ body {
 
 .juego {
 
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.4);
 
     width: 100%;
 
-    max-width: 900px;
+    max-width: 800px;
 
     min-height: 650px;
 
@@ -65,7 +60,7 @@ body {
 
 h1 {
 
-    color: #000000;
+    color: #c00808;
 
     font-size: 42px;
 
@@ -157,9 +152,8 @@ h1 {
 
     margin: 0 auto 25px auto;
 
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
 
-    border: 5px solid #95d5b2;
 
     border-radius: 20px;
 
@@ -173,7 +167,7 @@ h1 {
 
     box-shadow:
         0 5px 15px
-        rgba(0, 0, 0, 0.15);
+        rgba(0, 0, 0, 0.08);
 }
 
 
@@ -255,17 +249,17 @@ h1 {
 
 .plastico {
 
-    background-color: #3498db;
+    background-color: #f70a0a;
 }
 
 .vidrio {
 
-    background-color: #27ae60;
+    background-color: #f70a0a;
 }
 
 .organico {
 
-    background-color: #8e5a3c;
+    background-color: #f70a0a;
 }
 
 
