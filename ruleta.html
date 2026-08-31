@@ -18,24 +18,23 @@ body {
     min-height: 100dvh;
 
     font-family: Arial, sans-serif;
-
-    background-color: #0d0d0d;
-
+    /* background-color: #0d0d0d;
     background-image:
         linear-gradient(180deg,
             rgba(10,10,10,.88) 0%,
             rgba(20,10,10,.65) 45%,
             rgba(10,10,10,.9) 100%),
-        url("logo_variante.jpeg");
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.08), transparent 30%);
+     */
 
+    background-image: url(bgcoke16-9.jpg);
     background-size: cover, cover;
-    background-position: center, center bottom;
+    background-position: center, center;
     background-repeat: no-repeat, no-repeat;
-    background-attachment: scroll, scroll;
 
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
 
     padding: 20px;
     padding-top: 30px;
@@ -427,7 +426,7 @@ canvas {
     align-items: center;
     gap: 10px;
     text-align: center;
-    background: rgba(63, 28, 28, 0.92);
+    background: rgba(63, 28, 28, 0.64);
     color: white;
     font-size: 14px;
     z-index: 1000;
@@ -535,7 +534,12 @@ canvas {
     =========================================== -->
     <div id="menuPrincipal">
 
+       
+    <img src="Coca-Colatitulo.svg" alt="Logo Coca-Cola" class="logoRuleta">
+
         <h1>Ruleta Sustentable</h1>
+
+
 
         <p class="descripcion">
             Poné a prueba tus conocimientos y acumulá puntos por el planeta.
@@ -563,7 +567,11 @@ canvas {
     =========================================== -->
     <div id="juego">
 
-        <h1 id="tituloJuego">Ruleta Sustentable</h1>
+        <img src="Coca-Colatitulo.svg" alt="Logo Coca-Cola" class="logoRuleta">
+
+            <h1 id="tituloJuego">Ruleta Sustentable</h1>
+
+
 
         <p class="descripcion" id="descripcionJuego">
             ¡Cuidar el planeta está en tus manos!
