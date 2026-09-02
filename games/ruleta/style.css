@@ -1,10 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap");
+
+:root {
+    --red: #d90812;
+    --red-deep: #a80712;
+    --ink: #171313;
+    --paper: #fffaf7;
+    --mist: #f4e9e5;
+    --line: #ead7d3;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
     min-height: 100dvh;
 
-    font-family: Arial, sans-serif;
-    background-image: url(/assets/images/bgcoke16-9.jpg);
+    font-family: "DM Sans", Arial, sans-serif;
+    background-image: url(../../assets/images/bgcoke16-9.jpg);
     background-size: cover, cover;
     background-position: center, center;
     background-repeat: no-repeat, no-repeat;
@@ -21,7 +32,7 @@ body {
 .contenedor {
     width: 100%;
     max-width: 900px;
-    background: white;
+    background: var(--paper);
     border-radius: 25px;
     padding: 30px;
     text-align: center;
@@ -33,13 +44,15 @@ body {
 /*TITULO*/
 
 h1 {
-    color: #6b1717;
+    color: var(--red-deep);
     margin: 0;
     font-size: 40px;
+    font-family: "Playfair Display", Georgia, serif;
+    letter-spacing: -1px;
 }
 
 .descripcion {
-    color: #000000;
+    color: #675b59;
     font-size: 18px;
     margin-bottom: 20px;
 }
@@ -63,21 +76,21 @@ h1 {
 }
 
 .puntos {
-    background: #fff3e0;
-    color: #e65100;
-    border: 2px solid #ffcc80;
+    background: #fbe8e5;
+    color: var(--red-deep);
+    border: 2px solid #efb8b5;
 }
 
 .tiempo {
-    background: #e3f2fd;
-    color: #1565c0;
-    border: 2px solid #90caf9;
+    background: #f4e9e5;
+    color: #087f73;
+    border: 2px solid #b8d9d4;
 }
 
 .progreso {
-    background: #e8f5e9;
-    color: #357d2e;
-    border: 2px solid #a5d6a7;
+    background: #edf3e5;
+    color: #5f832d;
+    border: 2px solid #c6d9ad;
 }
 
 
@@ -98,23 +111,23 @@ h1 {
     padding: 16px 40px;
     border: none;
     border-radius: 40px;
-    background: #f40000;
+    background: var(--red);
     color: white;
     font-size: 22px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 6px 0 #b41212;
+    box-shadow: 0 6px 0 var(--red-deep);
     transition: .2s;
 }
 
 #comenzar:hover {
-    background: #ff2f2f;
+    background: #ef1b25;
     transform: translateY(-2px);
 }
 
 #comenzar:active {
     transform: translateY(3px);
-    box-shadow: 0 2px 0 #b41212;
+    box-shadow: 0 2px 0 var(--red-deep);
 }
 
 
@@ -156,8 +169,8 @@ canvas {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background: white;
-    border: 8px solid #6b1717;
+    background: var(--paper);
+    border: 8px solid var(--red-deep);
     border-radius: 50%;
 }
 
@@ -169,21 +182,21 @@ canvas {
     padding: 15px 40px;
     border: none;
     border-radius: 40px;
-    background: #f40000;
+    background: var(--red);
     color: white;
     font-size: 22px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 6px 0 #b41212;
+    box-shadow: 0 6px 0 var(--red-deep);
 }
 
 #botonGirar:hover {
-    background: #ff2f2f;
+    background: #ef1b25;
     transform: translateY(-2px);
 }
 
 #botonGirar:disabled {
-    background: #c47d7d;
+    background: #d88b8f;
     box-shadow: none;
     cursor: not-allowed;
 }
@@ -194,21 +207,22 @@ canvas {
 .desafio {
     margin-top: 30px;
     padding: 25px;
-    background: #f1f8e9;
+    background: var(--mist);
     border-radius: 20px;
-    border: 3px solid #c78181;
+    border: 3px solid #d9b6b1;
 }
 
 .desafio h2 {
     margin-top: 0;
-    color: #6b1717;
+    color: var(--red-deep);
     font-size: 28px;
+    font-family: "Playfair Display", Georgia, serif;
 }
 
 .pregunta {
     font-size: 20px;
     font-weight: bold;
-    color: #5a3131;
+    color: #4f3937;
     margin-bottom: 20px;
 }
 
@@ -224,9 +238,9 @@ canvas {
     width: 100%;
     padding: 16px;
     border-radius: 15px;
-    background: white;
-    border: 3px solid #d6a5a5;
-    color: #5b2828;
+    background: var(--paper);
+    border: 3px solid #e0c9c5;
+    color: #4f3937;
     font-size: 17px;
     font-weight: bold;
     cursor: pointer;
@@ -234,8 +248,8 @@ canvas {
 }
 
 .opcion:hover {
-    background: #e8f5e9;
-    border-color: #a04343;
+    background: #f4e9e5;
+    border-color: var(--red);
 }
 
 .opcion.correcta {
@@ -316,7 +330,7 @@ canvas {
     padding: 13px 28px;
     border: none;
     border-radius: 30px;
-    background: #7d2e2e;
+    background: var(--red-deep);
     color: white;
     font-size: 17px;
     font-weight: bold;
@@ -324,7 +338,7 @@ canvas {
 }
 
 .botonMenu:hover {
-    background: #5e1b1b;
+    background: #72151b;
 }
 
 
@@ -333,10 +347,10 @@ canvas {
 .reglas {
     margin-top: 25px;
     padding: 22px 25px;
-    background: #fdfbf7;
+    background: var(--paper);
     border-radius: 20px;
-    border: 2px dashed #c78181;
-    color: #333333;
+    border: 2px dashed #d9b6b1;
+    color: var(--ink);
     text-align: left;
     width: 100%;
     max-width: 100%;
@@ -344,7 +358,7 @@ canvas {
 }
 
 .reglas strong.tituloReglas {
-    color: #6b1717;
+    color: var(--red-deep);
     font-size: 1.4rem;
     display: block;
     margin-bottom: 12px;
@@ -361,7 +375,7 @@ canvas {
     font-size: 1.15rem;
     line-height: 1.5;
     margin-bottom: 10px;
-    color: #4a2828;
+    color: #4f3937;
 }
 
 .reglas li:last-child {
