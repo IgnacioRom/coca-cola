@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d90812">
+  <title>Juegos por el planeta | Coca-Cola</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/home.css">
+</head>
+<body>
+  <div class="home-background" aria-hidden="true">
+    <span class="bubble bubble-1"></span><span class="bubble bubble-2"></span>
+    <span class="bubble bubble-3"></span><span class="bubble bubble-4"></span>
+    <span class="bubble bubble-5"></span><span class="bubble bubble-6"></span>
+    <span class="bubble bubble-7"></span><span class="bubble bubble-8"></span>
+  </div>
+
+  <main class="home-card" aria-labelledby="titulo-principal">
+    <header class="home-brand">
+      <div class="swoosh" aria-hidden="true"></div>
+      <img src="assets/images/Coca-Colatitulo.svg" alt="Coca-Cola" class="brand-logo">
+      <div class="brand-line"><span></span> Juegos por el planeta <span></span></div>
+    </header>
+
+    <section class="home-intro">
+      <p class="eyebrow">Aprendé jugando</p>
+      <h1 id="titulo-principal">Elegí tu desafío</h1>
+      <p class="subtitle">Poné a prueba tus conocimientos y descubrí nuevas formas de cuidar el planeta.</p>
+    </section>
+
+    <nav class="game-links" aria-label="Elegir un juego">
+      <a class="game-card recycling-card" href="games/reciclaje/">
+        <span class="game-icon" aria-hidden="true">♻</span>
+        <span class="game-card-content">
+          <strong>Misión Reciclaje</strong>
+          <small>Elegí el tacho correcto para cada residuo.</small>
+        </span>
+        <span class="game-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="game-card roulette-card" href="games/ruleta/">
+        <span class="game-icon" aria-hidden="true">◉</span>
+        <span class="game-card-content">
+          <strong>Ruleta Sustentable</strong>
+          <small>Respondé preguntas y sumá puntos por el planeta.</small>
+        </span>
+        <span class="game-arrow" aria-hidden="true">↗</span>
+      </a>
+    </nav>
+
+    <footer class="home-footer">
+      <span>Desarrollado por</span>
+      <span class="footer-brand"><img src="assets/images/logo_empresa.jpeg" alt="" aria-hidden="true"> Pakova</span>
+    </footer>
+  </main>
+</body>
+</html>

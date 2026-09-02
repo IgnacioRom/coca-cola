@@ -1,2 +1,174 @@
-/* reset, variables, tipografías, layout generas
-*/
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap");
+
+:root {
+  --red: #d90812;
+  --red-deep: #a80712;
+  --ink: #171313;
+  --paper: #fffaf7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--red-deep); }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 24px;
+  overflow-x: hidden;
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  font-family: "DM Sans", Arial, sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 30%),
+    radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.08), transparent 35%),
+    var(--red);
+}
+
+.home-background { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+.bubble {
+  position: absolute;
+  bottom: -120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.13);
+  animation: float 14s linear infinite;
+}
+.bubble-1 { width: 86px; height: 86px; left: 5%; animation-delay: -3s; }
+.bubble-2 { width: 140px; height: 140px; left: 17%; animation-duration: 18s; animation-delay: -9s; }
+.bubble-3 { width: 48px; height: 48px; left: 34%; animation-duration: 11s; animation-delay: -1s; }
+.bubble-4 { width: 110px; height: 110px; left: 48%; animation-duration: 16s; animation-delay: -7s; }
+.bubble-5 { width: 62px; height: 62px; left: 63%; animation-duration: 12s; animation-delay: -5s; }
+.bubble-6 { width: 128px; height: 128px; left: 75%; animation-duration: 19s; animation-delay: -11s; }
+.bubble-7 { width: 46px; height: 46px; left: 88%; animation-duration: 10s; animation-delay: -2s; }
+.bubble-8 { width: 74px; height: 74px; left: 27%; animation-duration: 15s; animation-delay: -10s; }
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity: 0.25; }
+  50% { opacity: 0.7; }
+  100% { transform: translateY(-120vh) scale(1.3); opacity: 0; }
+}
+
+.home-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 820px);
+  padding: 34px 42px 25px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--paper);
+  box-shadow: 0 28px 70px rgba(52, 0, 0, 0.32);
+}
+.home-card::after {
+  content: "";
+  position: absolute;
+  top: -135px;
+  right: -100px;
+  width: 310px;
+  height: 310px;
+  border: 28px solid rgba(217, 8, 18, 0.06);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.home-brand { position: relative; margin-bottom: 38px; color: var(--red); text-align: center; }
+.brand-logo { width: min(230px, 62vw); display: block; margin: 0 auto 7px; }
+.brand-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.brand-line span { width: 34px; height: 1px; background: var(--red); }
+.swoosh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 42px;
+  height: 18px;
+  border-bottom: 3px solid var(--red);
+  border-radius: 50%;
+  transform: rotate(-14deg);
+}
+.home-intro { max-width: 600px; margin: 0 auto 30px; text-align: center; }
+.eyebrow {
+  margin-bottom: 8px;
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(34px, 7vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -1.5px;
+}
+.subtitle { max-width: 480px; margin: 12px auto 0; color: #675b59; font-size: 16px; line-height: 1.5; }
+
+.game-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.game-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 13px;
+  min-height: 145px;
+  padding: 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 16px;
+  box-shadow: 0 7px 0 rgba(80, 0, 0, 0.14);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.recycling-card { background: var(--red); }
+.roulette-card { background: #72151b; }
+.game-card:hover, .game-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 11px 0 rgba(80, 0, 0, 0.14);
+  outline: 3px solid rgba(217, 8, 18, 0.25);
+  outline-offset: 3px;
+}
+.game-card:active { transform: translateY(1px); box-shadow: 0 3px 0 rgba(80, 0, 0, 0.14); }
+.game-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  color: var(--red);
+  background: var(--paper);
+  font-size: 29px;
+}
+.roulette-card .game-icon { color: #72151b; }
+.game-card-content { display: grid; gap: 5px; }
+.game-card strong { font-family: "Playfair Display", Georgia, serif; font-size: 20px; }
+.game-card small { max-width: 190px; font-size: 12px; line-height: 1.4; opacity: 0.86; }
+.game-arrow { align-self: start; font-size: 25px; line-height: 1; }
+
+.home-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 30px;
+  color: #786967;
+  font-size: 12px;
+}
+.footer-brand { display: inline-flex; align-items: center; gap: 5px; color: var(--red); font-weight: 700; }
+.footer-brand img { width: 20px; height: 20px; border: 1px solid var(--red); border-radius: 50%; object-fit: cover; }
+
+@media (max-width: 620px) {
+  body { padding: 15px; }
+  .home-card { padding: 27px 20px 22px; border-radius: 22px; }
+  .home-brand { margin-bottom: 30px; }
+  .swoosh { left: 2px; }
+  .game-links { grid-template-columns: 1fr; }
+  .game-card { min-height: 116px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bubble, .game-card { animation: none; transition: none; }
+}
