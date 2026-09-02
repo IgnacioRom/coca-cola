@@ -1,0 +1,1 @@
+/// navegación desde el home a cada juego

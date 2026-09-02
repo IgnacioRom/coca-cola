@@ -1,633 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ruleta Sustentable</title>
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    min-height: 100dvh;
-
-    font-family: Arial, sans-serif;
-    /* background-color: #0d0d0d;
-    background-image:
-        linear-gradient(180deg,
-            rgba(10,10,10,.88) 0%,
-            rgba(20,10,10,.65) 45%,
-            rgba(10,10,10,.9) 100%),
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.08), transparent 30%);
-     */
-
-    background-image: url(bgcoke16-9.jpg);
-    background-size: cover, cover;
-    background-position: center, center;
-    background-repeat: no-repeat, no-repeat;
-
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-
-    padding: 20px;
-    padding-top: 30px;
-    padding-bottom: 70px;
-}
-
-.contenedor {
-    width: 100%;
-    max-width: 900px;
-    background: white;
-    border-radius: 25px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 15px 40px rgba(0,0,0,.25);
-}
-
-
-/* =========================
-   TITULO
-========================= */
-
-h1 {
-    color: #6b1717;
-    margin: 0;
-    font-size: 40px;
-}
-
-.descripcion {
-    color: #000000;
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-
-/* =========================
-   INFORMACIÓN DEL JUEGO
-========================= */
-
-.informacion {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.info {
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.puntos {
-    background: #fff3e0;
-    color: #e65100;
-    border: 2px solid #ffcc80;
-}
-
-.tiempo {
-    background: #e3f2fd;
-    color: #1565c0;
-    border: 2px solid #90caf9;
-}
-
-.progreso {
-    background: #e8f5e9;
-    color: #357d2e;
-    border: 2px solid #a5d6a7;
-}
-
-
-/* =========================
-   MENU PRINCIPAL
-========================= */
-
-#menuPrincipal {
-    display: block;
-}
-
-#juego {
-    display: none;
-}
-
-
-/* =========================
-   BOTON COMENZAR
-========================= */
-
-#comenzar {
-    padding: 16px 40px;
-    border: none;
-    border-radius: 40px;
-    background: #f40000;
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 6px 0 #b41212;
-    transition: .2s;
-}
-
-#comenzar:hover {
-    background: #ff2f2f;
-    transform: translateY(-2px);
-}
-
-#comenzar:active {
-    transform: translateY(3px);
-    box-shadow: 0 2px 0 #b41212;
-}
-
-
-/* =========================
-   RULETA
-========================= */
-
-.ruleta {
-    position: relative;
-    width: min(450px, 90vw);
-    aspect-ratio: 1;
-    margin: auto;
-}
-
-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border-radius: 50%;
-    box-shadow: 0 8px 25px rgba(0,0,0,.3);
-}
-
-.flecha {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 22px solid transparent;
-    border-right: 22px solid transparent;
-    border-top: 50px solid #000000;
-    z-index: 10;
-    filter: drop-shadow(0 3px 3px rgba(0,0,0,.4));
-}
-
-.centro {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    border: 8px solid #6b1717;
-    border-radius: 50%;
-}
-
-
-/* =========================
-   BOTON GIRAR
-========================= */
-
-#botonGirar {
-    margin-top: 30px;
-    padding: 15px 40px;
-    border: none;
-    border-radius: 40px;
-    background: #f40000;
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 6px 0 #b41212;
-}
-
-#botonGirar:hover {
-    background: #ff2f2f;
-    transform: translateY(-2px);
-}
-
-#botonGirar:disabled {
-    background: #c47d7d;
-    box-shadow: none;
-    cursor: not-allowed;
-}
-
-
-/* =========================
-   DESAFIO
-========================= */
-
-.desafio {
-    margin-top: 30px;
-    padding: 25px;
-    background: #f1f8e9;
-    border-radius: 20px;
-    border: 3px solid #c78181;
-}
-
-.desafio h2 {
-    margin-top: 0;
-    color: #6b1717;
-    font-size: 28px;
-}
-
-.pregunta {
-    font-size: 20px;
-    font-weight: bold;
-    color: #5a3131;
-    margin-bottom: 20px;
-}
-
-
-/* =========================
-   OPCIONES
-========================= */
-
-.opciones {
-    display: grid;
-    gap: 12px;
-}
-
-.opcion {
-    width: 100%;
-    padding: 16px;
-    border-radius: 15px;
-    background: white;
-    border: 3px solid #d6a5a5;
-    color: #5b2828;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .2s;
-}
-
-.opcion:hover {
-    background: #e8f5e9;
-    border-color: #a04343;
-}
-
-.opcion.correcta {
-    background: #c8e6c9;
-    border-color: #447d2e;
-    color: #265e1b;
-}
-
-.opcion.incorrecta {
-    background: #ffcdd2;
-    border-color: #c62828;
-    color: #b71c1c;
-}
-
-.opcion:disabled {
-    cursor: default;
-}
-
-
-/* =========================
-   CARTEL
-========================= */
-
-.resultado {
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 18px;
-    font-size: 20px;
-    font-weight: bold;
-    display: none;
-    animation: aparecer .3s ease;
-}
-
-.resultado.correcto {
-    display: block;
-    background: #c8e6c9;
-    border: 3px solid #56a043;
-    color: #285e1b;
-}
-
-.resultado.incorrecto {
-    display: block;
-    background: #ffcdd2;
-    border: 3px solid #e53935;
-    color: #b71c1c;
-}
-
-.resultado.victoria {
-    display: block;
-    background: #fff9c4;
-    border: 3px solid #4ffb2d;
-    color: #567948;
-    font-size: 24px;
-}
-
-.resultado.derrota {
-    display: block;
-    background: #ffebee;
-    border: 3px solid #e53935;
-    color: #b71c1c;
-    font-size: 24px;
-}
-
-@keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: scale(.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-/* =========================
-   BOTON MENU
-========================= */
-
-.botonMenu {
-    margin-top: 15px;
-    padding: 13px 28px;
-    border: none;
-    border-radius: 30px;
-    background: #7d2e2e;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.botonMenu:hover {
-    background: #5e1b1b;
-}
-
-
-/* =========================
-   REGLAS (OPTIMIZADO Y RESPONSIVO)
-========================= */
-
-.reglas {
-    margin-top: 25px;
-    padding: 22px 25px;
-    background: #fdfbf7;
-    border-radius: 20px;
-    border: 2px dashed #c78181;
-    color: #333333;
-    text-align: left;
-    width: 100%;
-}
-
-.reglas strong.tituloReglas {
-    color: #6b1717;
-    font-size: 1.4rem;
-    display: block;
-    margin-bottom: 12px;
-    text-align: center;
-}
-
-.reglas ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.reglas li {
-    font-size: 1.15rem;
-    line-height: 1.5;
-    margin-bottom: 10px;
-    color: #4a2828;
-}
-
-.reglas li:last-child {
-    margin-bottom: 0;
-}
-
-
-/* =========================
-   COPYRIGHT
-========================= */
-
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 8px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    text-align: center;
-    background: rgba(63, 28, 28, 0.64);
-    color: white;
-    font-size: 14px;
-    z-index: 1000;
-    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.15);
-}
-
-.logoEmpresa {
-    height: 32px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
-
-.footer strong {
-    color: white;
-}
-
-
-/* =========================
-   MEDIA QUERIES (TABLETS Y MOVILES)
-========================= */
-
-@media (max-width: 768px) {
-    .reglas {
-        padding: 18px 20px;
-    }
-    .reglas strong.tituloReglas {
-        font-size: 1.3rem;
-    }
-    .reglas li {
-        font-size: 1.05rem;
-    }
-}
-
-@media (max-width: 500px) {
-    .contenedor {
-        padding: 20px 15px;
-    }
-
-    h1 {
-        font-size: 30px;
-    }
-
-    .descripcion {
-        font-size: 16px;
-    }
-
-    .info {
-        font-size: 15px;
-        padding: 8px 14px;
-    }
-
-    #botonGirar {
-        font-size: 18px;
-        padding: 13px 28px;
-    }
-
-    .desafio h2 {
-        font-size: 23px;
-    }
-
-    .pregunta {
-        font-size: 17px;
-    }
-
-    .opcion {
-        font-size: 15px;
-    }
-
-    .reglas {
-        padding: 15px 16px;
-        margin-top: 18px;
-    }
-
-    .reglas strong.tituloReglas {
-        font-size: 1.15rem;
-        margin-bottom: 8px;
-    }
-
-    .reglas li {
-        font-size: 0.95rem;
-        margin-bottom: 8px;
-    }
-
-    .footer {
-        font-size: 11px;
-        padding: 7px 10px;
-        gap: 7px;
-    }
-
-    .logoEmpresa {
-        height: 25px;
-    }
-}
-</style>
-</head>
-
-
-<body>
-
-<div class="contenedor">
-
-    <!-- ==========================================
-         MENU PRINCIPAL
-    =========================================== -->
-    <div id="menuPrincipal">
-
-       
-    <img src="Coca-Colatitulo.svg" alt="Logo Coca-Cola" class="logoRuleta">
-
-        <h1>Ruleta Sustentable</h1>
-
-
-
-        <p class="descripcion">
-            Poné a prueba tus conocimientos y acumulá puntos por el planeta.
-        </p>
-
-        <div class="reglas">
-            <strong class="tituloReglas">¿Cómo jugar?</strong>
-            <ul>
-                <li>• <strong>Girá la ruleta</strong> para obtener una pregunta sobre el medio ambiente.</li>
-                <li>• Tenés <strong>30 segundos</strong> para responder cada pregunta.</li>
-                <li>• Sumá <strong>10 puntos</strong> por cada respuesta correcta.</li>
-                <li>• ¡Respondé las <strong>3 preguntas bien</strong> para ganar el juego perfecto!</li>
-            </ul>
-        </div>
-
-        <br>
-
-        <button id="comenzar">COMENZAR JUEGO</button>
-
-    </div>
-
-
-    <!-- ==========================================
-         JUEGO
-    =========================================== -->
-    <div id="juego">
-
-        <img src="Coca-Colatitulo.svg" alt="Logo Coca-Cola" class="logoRuleta">
-
-            <h1 id="tituloJuego">Ruleta Sustentable</h1>
-
-
-
-        <p class="descripcion" id="descripcionJuego">
-            ¡Cuidar el planeta está en tus manos!
-        </p>
-
-        <!-- INFORMACIÓN -->
-        <div class="informacion">
-            <div class="info puntos">
-                Puntos: <span id="puntos">0</span>
-            </div>
-
-            <div class="info tiempo">
-                Tiempo: <span id="tiempo">30</span>s
-            </div>
-
-            <div class="info progreso">
-                Desafíos: <span id="progreso">0</span> / 3
-            </div>
-        </div>
-
-        <!-- RULETA -->
-        <div class="ruleta" id="ruletaWrap">
-            <div class="flecha"></div>
-            <canvas id="canvas" width="700" height="700"></canvas>
-            <div class="centro"></div>
-        </div>
-
-        <button id="botonGirar">GIRAR RULETA</button>
-
-        <!-- DESAFÍO -->
-        <div id="desafio" class="desafio" style="display:none;">
-            <h2 id="tituloDesafio"></h2>
-            <div id="pregunta" class="pregunta"></div>
-            <div id="opciones" class="opciones"></div>
-            <div id="resultado" class="resultado"></div>
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ==========================================
-     COPYRIGHT
-=========================================== -->
-<footer class="footer">
-    <img src="logo_empresa.jpeg" alt="Logo de la empresa" class="logoEmpresa">
-    <span>© 2026 <strong>Pakova</strong> - Todos los derechos reservados.</span>
-</footer>
-
-
-<script>
-
-/* =====================================================
-   ELEMENTOS
-===================================================== */
+/*ELEMENTOS*/
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -648,9 +19,8 @@ const tituloJuego = document.getElementById("tituloJuego");
 const descripcionJuego = document.getElementById("descripcionJuego");
 
 
-/* =====================================================
-   MOSTRAR / OCULTAR LA RULETA
-===================================================== */
+/*MOSTRAR / OCULTAR LA RULETA*/
+
 function ocultarRuleta() {
     ruletaWrap.style.display = "none";
     botonGirar.style.display = "none";
@@ -666,17 +36,13 @@ function mostrarRuleta() {
 }
 
 
-/* =====================================================
-   CONFIGURACIÓN DEL JUEGO
-===================================================== */
+/*CONFIGURACIÓN DEL JUEGO*/
 const MAX_DESAFIOS = 3;
 const TIEMPO_MAXIMO = 30;
 const PUNTOS_POR_ACIERTO = 10;
 
 
-/* =====================================================
-   VARIABLES
-===================================================== */
+/*VARIABLES*/
 let puntos = 0;
 let aciertos = 0;
 let desafiosCompletados = 0;
@@ -689,9 +55,7 @@ let rotacion = 0;
 let preguntasUsadas = [];
 
 
-/* =====================================================
-   DESAFÍOS
-===================================================== */
+/*DESAFÍOS*/
 const desafios = [
     {
         titulo: "Reciclaje",
@@ -936,9 +300,7 @@ const desafios = [
 ];
 
 
-/* =====================================================
-   INICIALIZAR PREGUNTAS Y COLORES
-===================================================== */
+/* INICIALIZAR PREGUNTAS Y COLORES */
 function inicializarPreguntas() {
     preguntasUsadas = desafios.map(() => []);
 }
@@ -953,9 +315,7 @@ const cantidad = desafios.length;
 const angulo = (Math.PI * 2) / cantidad;
 
 
-/* =====================================================
-   DIBUJAR RULETA
-===================================================== */
+/* DIBUJAR RULETA */
 function dibujarRuleta() {
     const centroX = canvas.width / 2;
     const centroY = canvas.height / 2;
@@ -1001,9 +361,7 @@ function dibujarRuleta() {
 dibujarRuleta();
 
 
-/* =====================================================
-   COMENZAR JUEGO
-===================================================== */
+/* COMENZAR JUEGO */
 comenzar.addEventListener("click", comenzarJuego);
 
 function comenzarJuego() {
@@ -1027,9 +385,7 @@ function comenzarJuego() {
 }
 
 
-/* =====================================================
-   INFORMACIÓN
-===================================================== */
+/* INFORMACIÓN */
 function actualizarInformacion() {
     puntosElemento.textContent = puntos;
     tiempoElemento.textContent = tiempoRestante;
@@ -1037,9 +393,7 @@ function actualizarInformacion() {
 }
 
 
-/* =====================================================
-   ELEGIR PREGUNTA
-===================================================== */
+/* ELEGIR PREGUNTA */
 function elegirPregunta(indiceTematica) {
     const preguntas = desafios[indiceTematica].preguntas;
     let disponibles = preguntas.map((_, indice) => indice);
@@ -1060,9 +414,7 @@ function elegirPregunta(indiceTematica) {
 }
 
 
-/* =====================================================
-   TEMPORIZADOR
-===================================================== */
+/* TEMPORIZADOR */
 function iniciarTemporizador() {
     detenerTemporizador();
     tiempoRestante = TIEMPO_MAXIMO;
@@ -1087,9 +439,7 @@ function detenerTemporizador() {
 }
 
 
-/* =====================================================
-   TIEMPO AGOTADO
-===================================================== */
+/* TIEMPO AGOTADO */
 function tiempoAgotado() {
     if (!juegoActivo) return;
 
@@ -1110,9 +460,7 @@ function tiempoAgotado() {
 }
 
 
-/* =====================================================
-   GIRAR RULETA
-===================================================== */
+/* GIRAR RULETA */
 botonGirar.addEventListener("click", girarRuleta);
 
 function girarRuleta() {
@@ -1157,9 +505,7 @@ function girarRuleta() {
 }
 
 
-/* =====================================================
-   MOSTRAR DESAFÍO
-===================================================== */
+/* MOSTRAR DESAFÍO */
 function mostrarDesafio(indiceTematica) {
     const pregunta = elegirPregunta(indiceTematica);
 
@@ -1192,9 +538,7 @@ function mostrarDesafio(indiceTematica) {
 }
 
 
-/* =====================================================
-   COMPROBAR RESPUESTA
-===================================================== */
+/* COMPROBAR RESPUESTA */
 function comprobarRespuesta(respuesta) {
     detenerTemporizador();
 
@@ -1247,9 +591,7 @@ function comprobarRespuesta(respuesta) {
 }
 
 
-/* =====================================================
-   MENSAJE TEMPORAL
-===================================================== */
+/* MENSAJE TEMPORAL */
 function mostrarMensajeTemporal(titulo, texto, tipo) {
     desafioElemento.style.display = "block";
     tituloDesafio.textContent = "Tiempo agotado";
@@ -1265,9 +607,7 @@ function mostrarMensajeTemporal(titulo, texto, tipo) {
 }
 
 
-/* =====================================================
-   REINICIAR RULETA
-===================================================== */
+/* REINICIAR RULETA */
 function reiniciarRuleta() {
     if (!juegoActivo) return;
 
@@ -1285,9 +625,7 @@ function reiniciarRuleta() {
 }
 
 
-/* =====================================================
-   FINALIZAR JUEGO
-===================================================== */
+/* FINALIZAR JUEGO */
 function finalizarJuego() {
     detenerTemporizador();
     juegoActivo = false;
@@ -1332,9 +670,7 @@ function finalizarJuego() {
 }
 
 
-/* =====================================================
-   VOLVER AL MENÚ
-===================================================== */
+/*VOLVER AL MENÚ*/
 function volverAlMenu() {
     detenerTemporizador();
     juegoActivo = false;
@@ -1349,8 +685,3 @@ function volverAlMenu() {
     rotacion = 0;
     dibujarRuleta();
 }
-
-</script>
-
-</body>
-</html>
