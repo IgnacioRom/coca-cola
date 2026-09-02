@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#d90812">
   <title>Misión Reciclaje | Coca-Cola</title>
+  <link rel="stylesheet" href="/styles/main.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +18,7 @@
   <main class="juego" aria-labelledby="titulo-principal">
     <header class="marca">
       <div class="swoosh" aria-hidden="true"></div>
-      <img src="Coca-Colatitulo.svg" alt="Coca-Cola" class="marca-coca">
+      <img src="/assets/images/Coca-Colatitulo.svg" alt="Coca-Cola" class="marca-coca">
       <div class="marca-linea"><span></span> Misión Reciclaje <span></span></div>
     </header>
 
@@ -60,55 +61,9 @@
     Jugar nuevamente <span>↗</span>
     </button>
     </section>
-    <footer class="creditos">Desarrolado por <span class="creditos-marca"><img src="pakova-icon.jpeg" alt="" aria-hidden="true"> Pakova</span></footer>
+    <footer class="creditos">Desarrolado por <span class="creditos-marca"><img src="/assets/images/logo_empresa.jpeg" alt="" aria-hidden="true"> Pakova</span></footer>
     </main>
 
-<script>
-const residuos=[{nombre:'Botella de plástico',imagen:'🧴',tipo:'plastico'},{nombre:'Botella de vidrio',imagen:'🍾',tipo:'vidrio'},{nombre:'Cáscara de banana',imagen:'🍌',tipo:'organico'},{nombre:'Bolsa de plástico',imagen:'🛍️',tipo:'plastico'},{nombre:'Frasco de vidrio',imagen:'🫙',tipo:'vidrio'},{nombre:'Manzana',imagen:'🍎',tipo:'organico'},{nombre:'Botella plástica',imagen:'🥤',tipo:'plastico'},{nombre:'Copa de vidrio',imagen:'🍷',tipo:'vidrio'},{nombre:'Cáscara de naranja',imagen:'🍊',tipo:'organico'},{nombre:'Envase plástico',imagen:'🧃',tipo:'plastico'}];
-let puntos=0,vidas=3,residuoActual=0,juegoActivo=true;
-const imagenResiduo=document.getElementById('residuo'),textoPuntos=document.getElementById('puntos'),textoVidas=document.getElementById('vidas'),textoNumeroResiduo=document.getElementById('numero-residuo'),mensaje=document.getElementById('mensaje');
-function mostrarResiduo(){if(residuoActual>=residuos.length){terminarJuego();return} const residuo=residuos[residuoActual]; imagenResiduo.textContent=residuo.imagen; imagenResiduo.setAttribute('aria-label',residuo.nombre); textoNumeroResiduo.textContent=residuoActual+1; mensaje.textContent='';mensaje.className=''}
-function elegirTacho(tipoElegido){if(!juegoActivo)return;const residuo=residuos[residuoActual];if(tipoElegido===residuo.tipo){puntos+=10;textoPuntos.textContent=puntos;mensaje.textContent='¡Correcto! Muy bien. +10 puntos';mensaje.className='correcto';residuoActual++;setTimeout(mostrarResiduo,700)}else{vidas--;textoVidas.textContent=vidas;mensaje.textContent='Incorrecto. Probá con otro tacho.';mensaje.className='incorrecto';if(vidas<=0)setTimeout(terminarJuego,700)}}
-function terminarJuego() {
-  juegoActivo = false;
-
-  document.getElementById('pantalla-juego').style.display = 'none';
-  document.getElementById('pantalla-final').style.display = 'block';
-
-  document.getElementById('puntaje-final').textContent = puntos;
-
-  const sello = document.getElementById('final-sello');
-  const eyebrow = document.getElementById('final-eyebrow');
-  const titulo = document.getElementById('final-titulo');
-  const mensaje = document.getElementById('final-mensaje');
-
-  // GANÓ: completó los 10 residuos
-  if (residuoActual >= residuos.length) {
-    sello.textContent = '♻';
-    eyebrow.textContent = '¡Misión completada!';
-    titulo.textContent = '¡Gracias por cuidar el mundo!';
-
-    mensaje.innerHTML =
-      'Tu puntaje final es <strong id="puntaje-final">' +
-      puntos +
-      '</strong> puntos. ¡Cada elección cuenta!';
-
-  // PERDIÓ: se quedó sin vidas
-  } else {
-    sello.textContent = '🌱';
-    eyebrow.textContent = '¡No te rindas!';
-    titulo.textContent = '¡Todavía podés hacerlo mejor!';
-
-    mensaje.innerHTML =
-      'Tu puntaje fue de <strong id="puntaje-final">' +
-      puntos +
-      '</strong> puntos. ' +
-      'Aprendé de cada intento y volvé a intentarlo. ¡El planeta te necesita!';
-  }
-}
-
-function reiniciarJuego(){puntos=0;vidas=3;residuoActual=0;juegoActivo=true;textoPuntos.textContent=puntos;textoVidas.textContent=vidas;document.getElementById('pantalla-juego').style.display='block';document.getElementById('pantalla-final').style.display='none';mostrarResiduo()}
-mostrarResiduo();
-</script>
+<script src="script.js"></script>
 </body>
 </html>

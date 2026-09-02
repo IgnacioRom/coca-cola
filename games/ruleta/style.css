@@ -1,0 +1,474 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    font-family: Arial, sans-serif;
+    background-image: url(/assets/images/bgcoke16-9.jpg);
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+    padding: 20px;
+    padding-top: 30px;
+    padding-bottom: 70px;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+
+/*TITULO*/
+
+h1 {
+    color: #6b1717;
+    margin: 0;
+    font-size: 40px;
+}
+
+.descripcion {
+    color: #000000;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+
+/*INFORMACIÓN DEL JUEGO*/
+
+.informacion {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.info {
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.puntos {
+    background: #fff3e0;
+    color: #e65100;
+    border: 2px solid #ffcc80;
+}
+
+.tiempo {
+    background: #e3f2fd;
+    color: #1565c0;
+    border: 2px solid #90caf9;
+}
+
+.progreso {
+    background: #e8f5e9;
+    color: #357d2e;
+    border: 2px solid #a5d6a7;
+}
+
+
+/*MENU PRINCIPAL*/
+
+#menuPrincipal {
+    display: block;
+}
+
+#juego {
+    display: none;
+}
+
+
+/*BOTON COMENZAR*/
+
+#comenzar {
+    padding: 16px 40px;
+    border: none;
+    border-radius: 40px;
+    background: #f40000;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #b41212;
+    transition: .2s;
+}
+
+#comenzar:hover {
+    background: #ff2f2f;
+    transform: translateY(-2px);
+}
+
+#comenzar:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #b41212;
+}
+
+
+/*RULETA*/
+
+.ruleta {
+    position: relative;
+    width: min(450px, 90vw);
+    aspect-ratio: 1;
+    margin: auto;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    box-shadow: 0 8px 25px rgba(0,0,0,.3);
+}
+
+.flecha {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-top: 50px solid #000000;
+    z-index: 10;
+    filter: drop-shadow(0 3px 3px rgba(0,0,0,.4));
+}
+
+.centro {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 8px solid #6b1717;
+    border-radius: 50%;
+}
+
+
+/*BOTON GIRAR*/
+
+#botonGirar {
+    margin-top: 30px;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 40px;
+    background: #f40000;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #b41212;
+}
+
+#botonGirar:hover {
+    background: #ff2f2f;
+    transform: translateY(-2px);
+}
+
+#botonGirar:disabled {
+    background: #c47d7d;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+
+/*DESAFIO*/
+
+.desafio {
+    margin-top: 30px;
+    padding: 25px;
+    background: #f1f8e9;
+    border-radius: 20px;
+    border: 3px solid #c78181;
+}
+
+.desafio h2 {
+    margin-top: 0;
+    color: #6b1717;
+    font-size: 28px;
+}
+
+.pregunta {
+    font-size: 20px;
+    font-weight: bold;
+    color: #5a3131;
+    margin-bottom: 20px;
+}
+
+
+/*OPCIONES*/
+
+.opciones {
+    display: grid;
+    gap: 12px;
+}
+
+.opcion {
+    width: 100%;
+    padding: 16px;
+    border-radius: 15px;
+    background: white;
+    border: 3px solid #d6a5a5;
+    color: #5b2828;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.opcion:hover {
+    background: #e8f5e9;
+    border-color: #a04343;
+}
+
+.opcion.correcta {
+    background: #c8e6c9;
+    border-color: #447d2e;
+    color: #265e1b;
+}
+
+.opcion.incorrecta {
+    background: #ffcdd2;
+    border-color: #c62828;
+    color: #b71c1c;
+}
+
+.opcion:disabled {
+    cursor: default;
+}
+
+
+/*CARTEL*/
+
+.resultado {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 18px;
+    font-size: 20px;
+    font-weight: bold;
+    display: none;
+    animation: aparecer .3s ease;
+}
+
+.resultado.correcto {
+    display: block;
+    background: #c8e6c9;
+    border: 3px solid #56a043;
+    color: #285e1b;
+}
+
+.resultado.incorrecto {
+    display: block;
+    background: #ffcdd2;
+    border: 3px solid #e53935;
+    color: #b71c1c;
+}
+
+.resultado.victoria {
+    display: block;
+    background: #fff9c4;
+    border: 3px solid #4ffb2d;
+    color: #567948;
+    font-size: 24px;
+}
+
+.resultado.derrota {
+    display: block;
+    background: #ffebee;
+    border: 3px solid #e53935;
+    color: #b71c1c;
+    font-size: 24px;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/*BOTON MENU*/
+
+.botonMenu {
+    margin-top: 15px;
+    padding: 13px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #7d2e2e;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botonMenu:hover {
+    background: #5e1b1b;
+}
+
+
+/*REGLAS (OPTIMIZADO Y RESPONSIVO)*/
+
+.reglas {
+    margin-top: 25px;
+    padding: 22px 25px;
+    background: #fdfbf7;
+    border-radius: 20px;
+    border: 2px dashed #c78181;
+    color: #333333;
+    text-align: left;
+    width: 100%;
+}
+
+.reglas strong.tituloReglas {
+    color: #6b1717;
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.reglas ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reglas li {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    color: #4a2828;
+}
+
+.reglas li:last-child {
+    margin-bottom: 0;
+}
+
+
+/*COPYRIGHT*/
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    background: rgba(63, 28, 28, 0.64);
+    color: white;
+    font-size: 14px;
+    z-index: 1000;
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.logoEmpresa {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.footer strong {
+    color: white;
+}
+
+
+/*MEDIA QUERIES (TABLETS Y MOVILES)*/
+
+@media (max-width: 768px) {
+    .reglas {
+        padding: 18px 20px;
+    }
+    .reglas strong.tituloReglas {
+        font-size: 1.3rem;
+    }
+    .reglas li {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .contenedor {
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .descripcion {
+        font-size: 16px;
+    }
+
+    .info {
+        font-size: 15px;
+        padding: 8px 14px;
+    }
+
+    #botonGirar {
+        font-size: 18px;
+        padding: 13px 28px;
+    }
+
+    .desafio h2 {
+        font-size: 23px;
+    }
+
+    .pregunta {
+        font-size: 17px;
+    }
+
+    .opcion {
+        font-size: 15px;
+    }
+
+    .reglas {
+        padding: 15px 16px;
+        margin-top: 18px;
+    }
+
+    .reglas strong.tituloReglas {
+        font-size: 1.15rem;
+        margin-bottom: 8px;
+    }
+
+    .reglas li {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+
+    .footer {
+        font-size: 11px;
+        padding: 7px 10px;
+        gap: 7px;
+    }
+
+    .logoEmpresa {
+        height: 25px;
+    }
+}
